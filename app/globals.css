@@ -1,0 +1,273 @@
+/* ===================================
+   Global Styles — H. Sidharthan Portfolio
+   Matches reference: khurramshafeeq.vercel.app
+   =================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- Base Reset & Root Variables ---- */
+:root {
+  /* Light theme (default) */
+  --bg-primary:    #f5f5f7;
+  --bg-secondary:  #ffffff;
+  --bg-hero-from:  #EADFF8;
+  --bg-hero-to:    #E5F8F7;
+  --text-primary:  #111827;
+  --text-secondary:#6b7280;
+  --accent:        #8b5cf6;
+  --accent-dark:   #7c3aed;
+  --border:        #e5e7eb;
+  --card-bg:       #ffffff;
+  --stat-bg:       rgba(237,216,255,0.5);
+  --nav-bg:        rgba(255,255,255,0.95);
+  --footer-bg:     #1e2337;
+  --footer-text:   #d1d5db;
+  --section-alt:   #f3f4f6;
+}
+
+.dark {
+  /* Dark theme */
+  --bg-primary:    #0f1117;
+  --bg-secondary:  #1a1d2e;
+  --bg-hero-from:  #1a1040;
+  --bg-hero-to:    #0a2020;
+  --text-primary:  #f9fafb;
+  --text-secondary:#9ca3af;
+  --accent:        #a78bfa;
+  --accent-dark:   #8b5cf6;
+  --border:        #2d3148;
+  --card-bg:       #1e2337;
+  --stat-bg:       rgba(139,92,246,0.15);
+  --nav-bg:        rgba(15,17,23,0.95);
+  --footer-bg:     #0a0d1a;
+  --footer-text:   #9ca3af;
+  --section-alt:   #161929;
+}
+
+/* ---- Smooth Scrolling ---- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---- Body ---- */
+body {
+  font-family: 'Work Sans', Inter, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Custom Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+/* ---- Primary Button ---- */
+.btn-primary {
+  @apply inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5;
+}
+
+/* ---- Outline Button ---- */
+.btn-outline {
+  @apply inline-flex items-center gap-2 px-6 py-3 border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5;
+}
+
+/* ---- Section Heading ---- */
+.section-title {
+  @apply text-3xl lg:text-4xl font-bold text-center mb-4;
+  color: var(--text-primary);
+}
+
+.section-subtitle {
+  @apply text-center max-w-2xl mx-auto mb-12;
+  color: var(--text-secondary);
+}
+
+/* ---- Card base ---- */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  @apply rounded-2xl shadow-card transition-all duration-300;
+}
+
+.card:hover {
+  @apply shadow-card-hover -translate-y-1;
+}
+
+/* ---- Skill Progress Bar ---- */
+.skill-bar-track {
+  @apply h-2 rounded-full overflow-hidden;
+  background-color: var(--border);
+}
+.skill-bar-fill {
+  @apply h-full rounded-full transition-all duration-1000 ease-out;
+  background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+}
+
+/* ---- Navigation active link ---- */
+.nav-link {
+  @apply relative text-sm font-medium transition-colors duration-200;
+  color: var(--text-secondary);
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent);
+}
+.nav-link::after {
+  content: '';
+  @apply absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300;
+  background-color: var(--accent);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  @apply w-full;
+}
+
+/* ---- Reveal animation (used with IntersectionObserver) ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Stat card backgrounds ---- */
+.stat-card {
+  background-color: var(--stat-bg);
+}
+
+/* ---- Gradient hero background ---- */
+.hero-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--bg-hero-from) 0%,
+    var(--bg-secondary) 50%,
+    var(--bg-hero-to) 100%
+  );
+}
+
+/* ---- Dark mode section alternation ---- */
+.section-alt {
+  background-color: var(--section-alt);
+}
+
+/* ---- Project card overlay ---- */
+.project-card {
+  @apply relative overflow-hidden rounded-2xl shadow-card transition-all duration-300 cursor-pointer;
+}
+.project-card:hover {
+  @apply shadow-card-hover -translate-y-2;
+}
+.project-overlay {
+  @apply absolute inset-0 bg-primary-600 bg-opacity-0 transition-all duration-300 flex items-end p-6;
+}
+.project-card:hover .project-overlay {
+  @apply bg-opacity-90;
+}
+.project-overlay-content {
+  @apply transform translate-y-8 opacity-0 transition-all duration-300;
+}
+.project-card:hover .project-overlay-content {
+  @apply translate-y-0 opacity-100;
+}
+
+/* ---- Contact info icon box ---- */
+.contact-icon-box {
+  @apply w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0;
+  background-color: var(--stat-bg);
+  color: var(--accent);
+}
+
+/* ---- Footer ---- */
+footer {
+  background-color: var(--footer-bg);
+}
+
+/* ---- Back to top button ---- */
+#back-to-top {
+  @apply fixed bottom-8 right-8 w-12 h-12 bg-primary-500 hover:bg-primary-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:-translate-y-1 z-50;
+}
+
+/* ---- Theme toggle button ---- */
+#theme-toggle {
+  @apply w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200;
+  background-color: var(--stat-bg);
+  color: var(--accent);
+}
+#theme-toggle:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* ---- Mobile menu ---- */
+.mobile-menu {
+  background-color: var(--nav-bg);
+  @apply backdrop-blur-md;
+}
+
+/* ---- Animate skill bar on scroll ---- */
+@keyframes growBar {
+  from { width: 0%; }
+  to   { width: var(--skill-width); }
+}
+.skill-animate {
+  animation: growBar 1.2s ease-out forwards;
+}
+
+/* ---- Certification badge ---- */
+.cert-badge {
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium;
+  background-color: var(--stat-bg);
+  color: var(--accent);
+  border: 1px solid rgba(139,92,246,0.2);
+}
+
+/* ---- Achievement card ---- */
+.achievement-card {
+  @apply flex items-start gap-4 p-5 rounded-2xl transition-all duration-300;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+}
+.achievement-card:hover {
+  border-color: var(--accent);
+  @apply shadow-card-hover;
+}
+
+/* ---- Form input ---- */
+.form-input {
+  @apply w-full px-0 py-3 bg-transparent border-0 border-b-2 outline-none transition-colors duration-200 text-base;
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+.form-input::placeholder {
+  color: var(--text-secondary);
+}
+.form-input:focus {
+  border-color: var(--accent);
+}
+.form-input:focus + label,
+.form-input:not(:placeholder-shown) + label {
+  @apply -translate-y-6 text-xs;
+  color: var(--accent);
+}
+
+/* ---- Sticky nav blur ---- */
+.nav-sticky {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
