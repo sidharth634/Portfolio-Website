@@ -1,17 +1,60 @@
 /* ===================================
    Global Styles — H. Sidharthan Portfolio
+   Tailwind CSS v4 compatible
    Matches reference: khurramshafeeq.vercel.app
    =================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* ---- Base Reset & Root Variables ---- */
+/* ---- Custom theme tokens for Tailwind v4 ---- */
+@theme {
+  --color-primary-50:  #f5f0ff;
+  --color-primary-100: #ede5ff;
+  --color-primary-200: #ddd0ff;
+  --color-primary-300: #c4aaff;
+  --color-primary-400: #a87eff;
+  --color-primary-500: #8b5cf6;
+  --color-primary-600: #7c3aed;
+  --color-primary-700: #6d28d9;
+  --color-primary-800: #5b21b6;
+  --color-primary-900: #4c1d95;
+
+  --font-family-sans: 'Work Sans', Inter, sans-serif;
+
+  --shadow-card:       0 4px 24px 0 rgba(139,92,246,0.10);
+  --shadow-card-hover: 0 8px 40px 0 rgba(139,92,246,0.20);
+
+  --animate-float:      float 3s ease-in-out infinite;
+  --animate-fadeInUp:   fadeInUp 0.6s ease-out both;
+  --animate-slideInLeft: slideInLeft 0.6s ease-out both;
+  --animate-scaleIn:    scaleIn 0.5s ease-out both;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-10px); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes growBar {
+    from { width: 0%; }
+    to   { width: var(--skill-width); }
+  }
+}
+
+/* ---- CSS Custom Properties for theming ---- */
 :root {
-  /* Light theme (default) */
   --bg-primary:    #f5f5f7;
   --bg-secondary:  #ffffff;
   --bg-hero-from:  #EADFF8;
@@ -30,7 +73,6 @@
 }
 
 .dark {
-  /* Dark theme */
   --bg-primary:    #0f1117;
   --bg-secondary:  #1a1d2e;
   --bg-hero-from:  #1a1040;
@@ -63,63 +105,108 @@ body {
 }
 
 /* ---- Custom Scrollbar ---- */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 4px;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
 
-/* ---- Primary Button ---- */
+/* ---- Button Styles ---- */
 .btn-primary {
-  @apply inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #8b5cf6;
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: 2px solid #8b5cf6;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(139,92,246,0.3);
 }
 
-/* ---- Outline Button ---- */
 .btn-outline {
-  @apply inline-flex items-center gap-2 px-6 py-3 border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #8b5cf6;
+  color: #8b5cf6;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+}
+.btn-outline:hover {
+  background-color: #8b5cf6;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(139,92,246,0.3);
 }
 
-/* ---- Section Heading ---- */
+/* ---- Section Headings ---- */
 .section-title {
-  @apply text-3xl lg:text-4xl font-bold text-center mb-4;
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
   color: var(--text-primary);
+}
+@media (min-width: 1024px) {
+  .section-title { font-size: 2.5rem; }
 }
 
 .section-subtitle {
-  @apply text-center max-w-2xl mx-auto mb-12;
+  text-align: center;
+  max-width: 42rem;
+  margin: 0 auto 3rem;
   color: var(--text-secondary);
+  line-height: 1.7;
 }
 
-/* ---- Card base ---- */
+/* ---- Card ---- */
 .card {
   background-color: var(--card-bg);
   border: 1px solid var(--border);
-  @apply rounded-2xl shadow-card transition-all duration-300;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px 0 rgba(139,92,246,0.10);
+  transition: all 0.3s ease;
 }
-
 .card:hover {
-  @apply shadow-card-hover -translate-y-1;
+  box-shadow: 0 8px 40px 0 rgba(139,92,246,0.20);
+  transform: translateY(-4px);
 }
 
-/* ---- Skill Progress Bar ---- */
+/* ---- Skill Bars ---- */
 .skill-bar-track {
-  @apply h-2 rounded-full overflow-hidden;
+  height: 8px;
+  border-radius: 9999px;
+  overflow: hidden;
   background-color: var(--border);
 }
 .skill-bar-fill {
-  @apply h-full rounded-full transition-all duration-1000 ease-out;
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   background: linear-gradient(90deg, #8b5cf6, #a78bfa);
 }
 
-/* ---- Navigation active link ---- */
+/* ---- Nav Link ---- */
 .nav-link {
-  @apply relative text-sm font-medium transition-colors duration-200;
+  position: relative;
+  font-size: 0.875rem;
+  font-weight: 500;
   color: var(--text-secondary);
+  transition: color 0.2s ease;
+  text-decoration: none;
 }
 .nav-link:hover,
 .nav-link.active {
@@ -127,15 +214,20 @@ body {
 }
 .nav-link::after {
   content: '';
-  @apply absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
   background-color: var(--accent);
+  transition: width 0.3s ease;
 }
 .nav-link:hover::after,
 .nav-link.active::after {
-  @apply w-full;
+  width: 100%;
 }
 
-/* ---- Reveal animation (used with IntersectionObserver) ---- */
+/* ---- Reveal Animation ---- */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -146,12 +238,12 @@ body {
   transform: translateY(0);
 }
 
-/* ---- Stat card backgrounds ---- */
+/* ---- Stat Card ---- */
 .stat-card {
   background-color: var(--stat-bg);
 }
 
-/* ---- Gradient hero background ---- */
+/* ---- Hero Gradient ---- */
 .hero-gradient {
   background: linear-gradient(
     135deg,
@@ -161,34 +253,55 @@ body {
   );
 }
 
-/* ---- Dark mode section alternation ---- */
+/* ---- Section Alternate BG ---- */
 .section-alt {
   background-color: var(--section-alt);
 }
 
-/* ---- Project card overlay ---- */
+/* ---- Project Card ---- */
 .project-card {
-  @apply relative overflow-hidden rounded-2xl shadow-card transition-all duration-300 cursor-pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px 0 rgba(139,92,246,0.10);
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 .project-card:hover {
-  @apply shadow-card-hover -translate-y-2;
+  box-shadow: 0 8px 40px 0 rgba(139,92,246,0.20);
+  transform: translateY(-8px);
 }
 .project-overlay {
-  @apply absolute inset-0 bg-primary-600 bg-opacity-0 transition-all duration-300 flex items-end p-6;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(124,58,237,0);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
 }
 .project-card:hover .project-overlay {
-  @apply bg-opacity-90;
+  background-color: rgba(124,58,237,0.9);
 }
 .project-overlay-content {
-  @apply transform translate-y-8 opacity-0 transition-all duration-300;
+  transform: translateY(2rem);
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 .project-card:hover .project-overlay-content {
-  @apply translate-y-0 opacity-100;
+  transform: translateY(0);
+  opacity: 1;
 }
 
-/* ---- Contact info icon box ---- */
+/* ---- Contact Icon Box ---- */
 .contact-icon-box {
-  @apply w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   background-color: var(--stat-bg);
   color: var(--accent);
 }
@@ -198,76 +311,104 @@ footer {
   background-color: var(--footer-bg);
 }
 
-/* ---- Back to top button ---- */
+/* ---- Back to Top ---- */
 #back-to-top {
-  @apply fixed bottom-8 right-8 w-12 h-12 bg-primary-500 hover:bg-primary-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:-translate-y-1 z-50;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: #8b5cf6;
+  color: white;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(139,92,246,0.4);
+  transition: all 0.3s ease;
+  z-index: 50;
+  border: none;
+  cursor: pointer;
+}
+#back-to-top:hover {
+  background-color: #7c3aed;
+  transform: translateY(-4px);
 }
 
-/* ---- Theme toggle button ---- */
+/* ---- Theme Toggle ---- */
 #theme-toggle {
-  @apply w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
   background-color: var(--stat-bg);
   color: var(--accent);
+  border: none;
+  cursor: pointer;
 }
 #theme-toggle:hover {
   background-color: var(--accent);
   color: white;
 }
 
-/* ---- Mobile menu ---- */
+/* ---- Mobile Menu ---- */
 .mobile-menu {
   background-color: var(--nav-bg);
-  @apply backdrop-blur-md;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-/* ---- Animate skill bar on scroll ---- */
-@keyframes growBar {
-  from { width: 0%; }
-  to   { width: var(--skill-width); }
-}
-.skill-animate {
-  animation: growBar 1.2s ease-out forwards;
-}
-
-/* ---- Certification badge ---- */
-.cert-badge {
-  @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium;
-  background-color: var(--stat-bg);
-  color: var(--accent);
-  border: 1px solid rgba(139,92,246,0.2);
-}
-
-/* ---- Achievement card ---- */
+/* ---- Achievement Card ---- */
 .achievement-card {
-  @apply flex items-start gap-4 p-5 rounded-2xl transition-all duration-300;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
   background-color: var(--card-bg);
   border: 1px solid var(--border);
 }
 .achievement-card:hover {
   border-color: var(--accent);
-  @apply shadow-card-hover;
+  box-shadow: 0 8px 40px rgba(139,92,246,0.20);
 }
 
-/* ---- Form input ---- */
+/* ---- Form Input ---- */
 .form-input {
-  @apply w-full px-0 py-3 bg-transparent border-0 border-b-2 outline-none transition-colors duration-200 text-base;
-  border-color: var(--border);
+  width: 100%;
+  padding: 0.75rem 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1rem;
   color: var(--text-primary);
+  font-family: 'Work Sans', sans-serif;
 }
 .form-input::placeholder {
   color: var(--text-secondary);
 }
-.form-input:focus {
-  border-color: var(--accent);
-}
-.form-input:focus + label,
-.form-input:not(:placeholder-shown) + label {
-  @apply -translate-y-6 text-xs;
-  color: var(--accent);
-}
 
-/* ---- Sticky nav blur ---- */
+/* ---- Nav blur ---- */
 .nav-sticky {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+/* ---- Float animation for hero image ---- */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ---- Fade in up ---- */
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out both;
+}
+
+/* ---- Scale in ---- */
+.animate-scaleIn {
+  animation: scaleIn 0.6s ease-out 0.3s both;
 }
