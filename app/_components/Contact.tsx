@@ -43,21 +43,60 @@ const SOCIAL_LINKS = [
   { icon: GlobeIcon,    href: "https://sidharth1-github-io.vercel.app/",                                 label: "Portfolio" },
 ];
 
+// To receive real emails from this form:
+// 1. Sign up for free at https://formspree.io
+// 2. Create a new form and copy the Form ID
+// 3. Paste the Form ID here:
+const FORMSPREE_FORM_ID = "YOUR_FORMSPREE_FORM_ID"; 
+
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const [formState, setFormState] = useState({ name: "", email: "", subject: "", message: "" });
   const [submitted, setSubmitted]   = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In production, connect to an API route or service like Formspree/EmailJS
-    setSubmitted(true);
-    setFormState({ name: "", email: "", subject: "", message: "" });
-    setTimeout(() => setSubmitted(false), 4000);
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    if (!FORMSPREE_FORM_ID || FORMSPREE_FORM_ID === "YOUR_FORMSPREE_FORM_ID") {
+      // Fallback fallback if not configured
+      console.warn("Please configure your FORMSPREE_FORM_ID in Contact.tsx to receive real emails.");
+      setSubmitted(true);
+      setFormState({ name: "", email: "", subject: "", message: "" });
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitted(false), 4000);
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormState({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => setSubmitted(false), 4000);
+      } else {
+        setSubmitError("Failed to send message. Please check the Formspree ID or try again.");
+      }
+    } catch (err) {
+      setSubmitError("An error occurred. Please try again or email directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   useEffect(() => {
@@ -154,6 +193,12 @@ export default function Contact() {
                 </div>
               )}
 
+              {submitError && (
+                <div className="mb-6 p-4 rounded-xl text-sm font-medium text-white bg-red-500">
+                  ✕ {submitError}
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 {/* Name */}
                 <div className="border-b" style={{ borderColor: "var(--border)" }}>
@@ -208,8 +253,8 @@ export default function Contact() {
                 </div>
 
                 {/* Submit */}
-                <button type="submit" className="btn-primary self-start">
-                  Send Message
+                <button type="submit" disabled={isSubmitting} className="btn-primary self-start disabled:opacity-60 disabled:cursor-not-allowed">
+                  {isSubmitting ? "Sending..." : "Send Message"}
                   <PaperAirplaneIcon className="w-4 h-4" />
                 </button>
               </form>
