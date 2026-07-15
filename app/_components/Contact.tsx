@@ -43,11 +43,7 @@ const SOCIAL_LINKS = [
   { icon: GlobeIcon,    href: "https://sidharth1-github-io.vercel.app/",                                 label: "Portfolio" },
 ];
 
-// To receive real emails from this form:
-// 1. Sign up for free at https://formspree.io
-// 2. Create a new form and copy the Form ID
-// 3. Paste the Form ID here:
-const FORMSPREE_FORM_ID = "YOUR_FORMSPREE_FORM_ID"; 
+const TARGET_EMAIL = "sidharthhs2006@gmail.com";
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -65,32 +61,29 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitError("");
 
-    if (!FORMSPREE_FORM_ID || FORMSPREE_FORM_ID === "YOUR_FORMSPREE_FORM_ID") {
-      // Fallback fallback if not configured
-      console.warn("Please configure your FORMSPREE_FORM_ID in Contact.tsx to receive real emails.");
-      setSubmitted(true);
-      setFormState({ name: "", email: "", subject: "", message: "" });
-      setIsSubmitting(false);
-      setTimeout(() => setSubmitted(false), 4000);
-      return;
-    }
-
     try {
-      const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+      const response = await fetch(`https://formsubmit.co/ajax/${TARGET_EMAIL}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify(formState),
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          _subject: formState.subject,
+          message: formState.message,
+        }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (response.ok && result.success === "true") {
         setSubmitted(true);
         setFormState({ name: "", email: "", subject: "", message: "" });
-        setTimeout(() => setSubmitted(false), 4000);
+        setTimeout(() => setSubmitted(false), 5000);
       } else {
-        setSubmitError("Failed to send message. Please check the Formspree ID or try again.");
+        setSubmitError("Failed to send message. Please try again or email directly.");
       }
     } catch (err) {
       setSubmitError("An error occurred. Please try again or email directly.");
