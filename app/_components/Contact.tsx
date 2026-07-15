@@ -47,7 +47,7 @@ const SOCIAL_LINKS = [
 // 1. Visit https://web3forms.com and enter your email (sidharthhs2006@gmail.com)
 // 2. You will instantly get a free Access Key in your inbox.
 // 3. Paste the Access Key here:
-const WEB3FORMS_ACCESS_KEY = "355e6088-c86b-4826-83c8-87717c13e09d";
+const WEB3FORMS_ACCESS_KEY: string = "355e6088-c86b-4826-83c8-87717c13e09d";
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -100,7 +100,7 @@ export default function Contact() {
       } else {
         setSubmitError(result.message || "Failed to send message. Please try again or email directly.");
       }
-    } catch (err) {
+    } catch {
       setSubmitError("An error occurred. Please try again or email directly.");
     } finally {
       setIsSubmitting(false);
