@@ -43,7 +43,11 @@ const SOCIAL_LINKS = [
   { icon: GlobeIcon,    href: "https://sidharth1-github-io.vercel.app/",                                 label: "Portfolio" },
 ];
 
-const TARGET_EMAIL = "sidharthhs2006@gmail.com";
+// To receive real emails from this form:
+// 1. Visit https://web3forms.com and enter your email (sidharthhs2006@gmail.com)
+// 2. You will instantly get a free Access Key in your inbox.
+// 3. Paste the Access Key here:
+const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE"; 
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -61,29 +65,40 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitError("");
 
+    if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === "YOUR_ACCESS_KEY_HERE") {
+      console.warn("Please configure your WEB3FORMS_ACCESS_KEY in Contact.tsx to receive real emails.");
+      // Fallback fallback if not configured
+      setSubmitted(true);
+      setFormState({ name: "", email: "", subject: "", message: "" });
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitted(false), 5000);
+      return;
+    }
+
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${TARGET_EMAIL}`, {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
           name: formState.name,
           email: formState.email,
-          _subject: formState.subject,
+          subject: formState.subject,
           message: formState.message,
         }),
       });
 
       const result = await response.json();
 
-      if (response.ok && result.success === "true") {
+      if (response.ok && result.success) {
         setSubmitted(true);
         setFormState({ name: "", email: "", subject: "", message: "" });
         setTimeout(() => setSubmitted(false), 5000);
       } else {
-        setSubmitError("Failed to send message. Please try again or email directly.");
+        setSubmitError(result.message || "Failed to send message. Please try again or email directly.");
       }
     } catch (err) {
       setSubmitError("An error occurred. Please try again or email directly.");
