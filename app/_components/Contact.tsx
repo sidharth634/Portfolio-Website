@@ -38,21 +38,21 @@ const CONTACT_INFO = [
 ];
 
 const SOCIAL_LINKS = [
-  { icon: GitHubIcon,   href: "https://github.com/sidharth634",                                          label: "GitHub"    },
-  { icon: LinkedInIcon, href: "https://www.linkedin.com/in/sidharthan-hariharasudhan-1222ab328",         label: "LinkedIn"  },
-  { icon: GlobeIcon,    href: "https://sidharth1-github-io.vercel.app/",                                 label: "Portfolio" },
+  { icon: GitHubIcon, href: "https://github.com/sidharth634", label: "GitHub" },
+  { icon: LinkedInIcon, href: "https://www.linkedin.com/in/sidharthan-hariharasudhan-1222ab328", label: "LinkedIn" },
+  { icon: GlobeIcon, href: "https://sidharth1-github-io.vercel.app/", label: "Portfolio" },
 ];
 
 // To receive real emails from this form:
 // 1. Visit https://web3forms.com and enter your email (sidharthhs2006@gmail.com)
 // 2. You will instantly get a free Access Key in your inbox.
 // 3. Paste the Access Key here:
-const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE"; 
+const WEB3FORMS_ACCESS_KEY = "355e6088-c86b-4826-83c8-87717c13e09d";
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const [formState, setFormState] = useState({ name: "", email: "", subject: "", message: "" });
-  const [submitted, setSubmitted]   = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
