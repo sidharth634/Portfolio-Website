@@ -55,6 +55,20 @@ const PROJECTS = [
     image: null,
     gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
   },
+  {
+    id: 4,
+    title: "AquaGuard",
+    tag: "AI / DATA SCIENCE",
+    tagColor: "#06b6d4",
+    description:
+      "AI-powered smart water quality analyzer and safety assessment application. Evaluates water parameters, predicts safety scores, visualizes historical trends, and provides explainable AI recommendations.",
+    tech: ["Python", "Streamlit", "Scikit-Learn", "SQLite", "Plotly"],
+    github: "https://github.com/sidharth634/AquaGuard",
+    demo: "https://aquaguard-xpzfxc7glhr8otmkgugewv.streamlit.app/",
+    /* TO REPLACE: add /public/project-4.jpg with actual screenshot */
+    image: null,
+    gradient: "linear-gradient(135deg, #09c6f9 0%, #045de9 100%)",
+  },
 ];
 
 /* ── Project Card ── */
