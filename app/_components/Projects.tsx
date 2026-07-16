@@ -49,8 +49,8 @@ const PROJECTS = [
     description:
       "Java Swing desktop application with seat booking, user authentication, booking history, payment handling, and SQLite database integration.",
     tech: ["Java", "Java Swing", "SQLite"],
-    github: "https://github.com/sidharth634",
-    demo: "#",
+    github: "https://github.com/sidharth634/BookMyShowDeluxe",
+    demo: "https://github.com/sidharth634/BookMyShowDeluxe/releases",
     /* TO REPLACE: add /public/project-3.jpg with actual screenshot */
     image: null,
     gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
