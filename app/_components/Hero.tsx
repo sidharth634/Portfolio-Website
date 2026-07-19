@@ -63,7 +63,7 @@ export default function Hero() {
               >
                 Hello, I&apos;m
                 <br />
-                <span className="text-primary-500">H. Sidharthan</span>
+                <span className="text-primary-500">Sidharthan</span>
               </h1>
 
               {/* Role description */}
