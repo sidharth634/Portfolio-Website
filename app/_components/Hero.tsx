@@ -16,7 +16,7 @@ import { ArrowDownTrayIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 
 const STATS = [
   { value: "2024", label: "Batch Year" },
-  { value: "3+",   label: "Projects Built" },
+  { value: "5+",   label: "Projects Built" },
   { value: "2",    label: "Hackathon Wins" },
 ];
 
