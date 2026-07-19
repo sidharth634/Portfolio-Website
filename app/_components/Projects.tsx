@@ -15,20 +15,6 @@ import { GitHubIcon } from "./Icons";
 const PROJECTS = [
   {
     id: 1,
-    title: "Lensora",
-    tag: "AI / COMPUTER VISION",
-    tagColor: "#10b981",
-    description:
-      "A state-of-the-art, web-based sliding puzzle game driven by real-time computer vision and hand-gesture recognition. Built using MediaPipe Tasks Vision, HTML5 Canvas, Web Audio API, and pure ES6 JavaScript.",
-    tech: ["JavaScript", "MediaPipe", "HTML5 Canvas", "Web Audio API", "Vite"],
-    github: "https://github.com/sidharth634/camera-puzzle",
-    demo: "https://github.com/sidharth634/camera-puzzle",
-    /* TO REPLACE: add /public/project-1.jpg with actual screenshot */
-    image: null,
-    gradient: "linear-gradient(135deg, #0d9488 0%, #10b981 50%, #06b6d4 100%)",
-  },
-  {
-    id: 2,
     title: "Motion Fruit Ninja",
     tag: "GAME DEV",
     tagColor: "#8b5cf6",
@@ -37,12 +23,12 @@ const PROJECTS = [
     tech: ["Electron", "Three.js", "WebSockets", "JavaScript"],
     github: "https://github.com/sidharth634/Motion-Fruit-Ninja",
     demo: "https://github.com/sidharth634/Motion-Fruit-Ninja/releases#release-Prototype-v2.0",
-    /* TO REPLACE: add /public/project-2.jpg with actual screenshot */
+    /* TO REPLACE: add /public/project-1.jpg with actual screenshot */
     image: null,
     gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
   },
   {
-    id: 3,
+    id: 2,
     title: "Fire Detection System",
     tag: "AI / COMPUTER VISION",
     tagColor: "#ef4444",
@@ -51,12 +37,12 @@ const PROJECTS = [
     tech: ["Python", "YOLOv8", "OpenCV", "Flask"],
     github: "https://github.com/sidharth634/New-Fire-Detection-System",
     demo: "https://sidharth634.github.io/New-Fire-Detection-System/",
-    /* TO REPLACE: add /public/project-3.jpg with actual screenshot */
+    /* TO REPLACE: add /public/project-2.jpg with actual screenshot */
     image: null,
     gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
   },
   {
-    id: 4,
+    id: 3,
     title: "Movie Ticket Booking System",
     tag: "DESKTOP APP",
     tagColor: "#3b82f6",
@@ -65,12 +51,12 @@ const PROJECTS = [
     tech: ["Java", "Java Swing", "SQLite"],
     github: "https://github.com/sidharth634/BookMyShowDeluxe",
     demo: "https://github.com/sidharth634/BookMyShowDeluxe/releases",
-    /* TO REPLACE: add /public/project-4.jpg with actual screenshot */
+    /* TO REPLACE: add /public/project-3.jpg with actual screenshot */
     image: null,
     gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
   },
   {
-    id: 5,
+    id: 4,
     title: "AquaGuard",
     tag: "AI / DATA SCIENCE",
     tagColor: "#06b6d4",
@@ -79,9 +65,23 @@ const PROJECTS = [
     tech: ["Python", "Streamlit", "Scikit-Learn", "SQLite", "Plotly"],
     github: "https://github.com/sidharth634/AquaGuard",
     demo: "https://aquaguard-xpzfxc7glhr8otmkgugewv.streamlit.app/",
-    /* TO REPLACE: add /public/project-5.jpg with actual screenshot */
+    /* TO REPLACE: add /public/project-4.jpg with actual screenshot */
     image: null,
     gradient: "linear-gradient(135deg, #09c6f9 0%, #045de9 100%)",
+  },
+  {
+    id: 5,
+    title: "Lensora",
+    tag: "AI / COMPUTER VISION",
+    tagColor: "#10b981",
+    description:
+      "A state-of-the-art, web-based sliding puzzle game driven by real-time computer vision and hand-gesture recognition. Built using MediaPipe Tasks Vision, HTML5 Canvas, Web Audio API, and pure ES6 JavaScript.",
+    tech: ["JavaScript", "MediaPipe", "HTML5 Canvas", "Web Audio API", "Vite"],
+    github: "https://github.com/sidharth634/Lensora-Interactive-Puzzle-Studio",
+    demo: "https://lensora-interactive-puzzle-studio.vercel.app/",
+    /* TO REPLACE: add /public/project-5.jpg with actual screenshot */
+    image: null,
+    gradient: "linear-gradient(135deg, #0d9488 0%, #10b981 50%, #06b6d4 100%)",
   },
 ];
 
