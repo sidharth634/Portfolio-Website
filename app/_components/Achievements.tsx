@@ -38,6 +38,7 @@ const ACHIEVEMENTS = [
 ];
 
 const CERTIFICATIONS = [
+  { name: "AWS Certified Cloud Practitioner",                        grade: "",       provider: "Amazon Web Services"    },
   { name: "Industrial IoT",                                         grade: "Elite",  provider: "NPTEL (IIT)"            },
   { name: "Human-Computer Interactions",                            grade: "Elite",  provider: "NPTEL (IIT)"            },
   { name: "MongoDB Basics",                                         grade: "",       provider: "MongoDB University"     },

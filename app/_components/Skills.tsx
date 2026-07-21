@@ -40,13 +40,15 @@ const SKILL_CATEGORIES = [
     ],
   },
   {
-    title: "Tools",
+    title: "Tools & Cloud",
     icon: WrenchScrewdriverIcon,
     color: "#10b981",
     skills: [
-      { name: "Git",     level: 82 },
-      { name: "GitHub",  level: 85 },
-      { name: "VS Code", level: 95 },
+      { name: "AWS",             level: 80 },
+      { name: "Cloud Computing", level: 85 },
+      { name: "Git",             level: 82 },
+      { name: "GitHub",          level: 85 },
+      { name: "VS Code",         level: 95 },
     ],
   },
   {
