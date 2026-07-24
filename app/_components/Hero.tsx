@@ -107,23 +107,18 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* ── Right Column: Profile Illustration ── */}
+          {/* ── Right Column: Profile Image ── */}
           <div className="lg:w-2/5 mt-12 lg:mt-0 animate-scaleIn">
             <div
-              className="rounded-2xl overflow-hidden flex items-center justify-center"
-              style={{ backgroundColor: "var(--card-bg)", minHeight: "380px" }}
+              className="rounded-3xl overflow-hidden flex items-center justify-center shadow-card"
+              style={{ backgroundColor: "var(--card-bg)" }}
             >
-              {/*
-                Hero illustration.
-                TO REPLACE: swap hero.png in /public with your own photo.
-                Keep the same filename or update the src below.
-              */}
               <div className="relative w-full max-h-[460px] aspect-square animate-float">
                 <Image
                   src="/hero.png"
                   alt="H. Sidharthan — CS Engineer & Python Developer"
                   fill
-                  className="object-contain"
+                  className="object-cover object-top rounded-3xl"
                   priority
                 />
               </div>
